@@ -36,7 +36,7 @@ class BMIBloc extends Bloc<BMIEvent, BMIState> {
   Future<void> _onSaveBMI(SaveBMI event, Emitter<BMIState> emit) async {
     try {
       await _bmiRepository.addBMI(event.value, event.status);
-      emit(const BMIInitial());
+      emit(const BMISaved());
     } catch (e) {
       emit(const BMIError("Oops we cloudn't save that bmi"));
     }

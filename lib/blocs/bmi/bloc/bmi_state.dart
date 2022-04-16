@@ -18,6 +18,10 @@ class BMICalculated extends BMIState {
   const BMICalculated(this.bmi, this.status);
 }
 
+class BMISaved extends BMIState {
+  const BMISaved();
+}
+
 class BMIError extends BMIState {
   final String message;
 

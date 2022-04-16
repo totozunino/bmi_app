@@ -9,7 +9,7 @@ class BMIRepository {
   Future<List<BMI>> getHistory() async {
     final history = await _getBMIBox();
 
-    return history.values.toList();
+    return history.values.toList().reversed.toList();
   }
 
   Future<void> addBMI(final double value, final String status) async {

@@ -25,3 +25,7 @@ class SaveBMI extends BMIEvent {
 
   const SaveBMI(this.status, this.value);
 }
+
+class GetHistory extends BMIEvent {
+  const GetHistory();
+}

@@ -1,6 +1,8 @@
 import 'package:calculate_bmi/blocs/bmi/bloc/bmi_bloc.dart';
 import 'package:calculate_bmi/blocs/bmi/bmi_repository.dart';
 import 'package:calculate_bmi/blocs/bmi/model/bmi.dart';
+import 'package:calculate_bmi/blocs/history/bloc/history_bloc.dart';
+import 'package:calculate_bmi/blocs/history/bloc/history_event.dart';
 import 'package:calculate_bmi/screens/history_screen.dart';
 import 'package:calculate_bmi/screens/home_screen.dart';
 import 'package:flutter/cupertino.dart';
@@ -16,7 +18,6 @@ Future<void> main() async {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return CupertinoApp(
@@ -29,22 +30,35 @@ class MyApp extends StatelessWidget {
         navigationBar: const CupertinoNavigationBar(
           middle: Text("BMI"),
         ),
-        child: BlocProvider(
-          create: (context) => BMIBloc(
-            BMIRepository(),
-          ),
-          child: CupertinoTabScaffold(
-            tabBar: CupertinoTabBar(
-              items: const [
-                BottomNavigationBarItem(icon: Icon(CupertinoIcons.home)),
-                BottomNavigationBarItem(icon: Icon(CupertinoIcons.person))
-              ],
-            ),
-            tabBuilder: (context, index) {
-              if (index == 1) return const HistoryScreen();
+        child: RepositoryProvider(
+          create: (context) => BMIRepository(),
+          child: MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                create: (context) => BMIBloc(
+                  context.read<BMIRepository>(),
+                ),
+              ),
+              BlocProvider(
+                create: (context) => HistoryBloc(
+                  context.read<BMIRepository>(),
+                  context.read<BMIBloc>(),
+                )..add(const GetHistory()),
+              ),
+            ],
+            child: CupertinoTabScaffold(
+              tabBar: CupertinoTabBar(
+                items: const [
+                  BottomNavigationBarItem(icon: Icon(CupertinoIcons.home)),
+                  BottomNavigationBarItem(icon: Icon(CupertinoIcons.person))
+                ],
+              ),
+              tabBuilder: (context, index) {
+                if (index == 1) return const HistoryScreen();
 
-              return const HomeScreen();
-            },
+                return const HomeScreen();
+              },
+            ),
           ),
         ),
       ),
