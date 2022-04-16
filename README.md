@@ -1,16 +1,7 @@
-# calculate_bmi
+# BMI App
 
-A new Flutter project.
+An app to calculate your BMI an keep an history of it using the cupertino style of Flutter
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![image](https://user-images.githubusercontent.com/16108354/163686646-031afd87-8846-41d4-a303-5b0c78d0b504.png)
+![image](https://user-images.githubusercontent.com/16108354/163686685-4701df9a-13ca-4542-854d-f1e194668995.png)
+![image](https://user-images.githubusercontent.com/16108354/163686760-ca2a2e8d-97b1-4962-a441-5d368832efe9.png)
